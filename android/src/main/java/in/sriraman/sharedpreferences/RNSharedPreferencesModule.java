@@ -88,6 +88,14 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 			SharedDataProvider.putSharedValue(key,value);
 
 		}
+    
+    @ReactMethod
+    public void putBoolean(String key, boolean value) {
+        
+        SharedHandler.init(getReactApplicationContext());
+        SharedDataProvider.putSharedValue(key,value);
+        
+    }
 
 	@ReactMethod
 		public void getItem(String key, Callback successCallback){
@@ -98,6 +106,14 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 		}
 
+    @ReactMethod
+    public void getBoolean(String key, Callback successCallback){
+        
+        SharedHandler.init(getReactApplicationContext());
+        Boolean value = SharedDataProvider.getSharedBoolean(key);
+        successCallback.invoke(value);
+        
+    }
 
 	/***
 	 * getItems(): returns Native Array of Preferences for the given values
